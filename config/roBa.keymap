@@ -53,6 +53,16 @@
             bindings = <&kp EQUAL>;
             key-positions = <24 25>;
         };
+
+        kananyuryoku {
+            bindings = <&kp LANG_HIRAGANA>;
+            key-positions = <16 28>;
+        };
+
+        hankakueisuu {
+            bindings = <&kp LANG_ZENKAKUHANKAKU>;
+            key-positions = <15 27>;
+        };
     };
 
     macros {
