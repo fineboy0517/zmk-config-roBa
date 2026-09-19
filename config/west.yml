@@ -3,6 +3,8 @@ manifest:
   remotes:
     - name: cormoran
       url-base: https://github.com/cormoran
+    - name: caksoylar
+      url-base: https://github.com/caksoylar
   projects:
     # DYA Studio current ZMK fork
     - name: zmk
@@ -62,6 +64,11 @@ manifest:
       revision: main
     - name: zmk-feature-module-physical-layout
       remote: cormoran
+      revision: main
+
+    # XIAO BLE RGB LED battery / connection indicator
+    - name: zmk-rgbled-widget
+      remote: caksoylar
       revision: main
 
   self:
