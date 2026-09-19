@@ -1,24 +1,48 @@
 manifest:
+  version: 1.2
   remotes:
     - name: cormoran
       url-base: https://github.com/cormoran
-    # 既存のリモートはそのまま維持
   projects:
-    # ZMK: DYA Studio 用カスタム RPC サブシステム付き cormoran fork
+    # DYA Studio current ZMK fork
     - name: zmk
       remote: cormoran
-      revision: v0.3-branch+dya
-      import: app/west.yml
+      revision: main+dya
+      clone-depth: 1
+      import:
+        file: app/west.yml
 
-    - name: zmk-pmw3610-driver
+    # Zephyr revision used by the current DYA Dash stack
+    - name: zephyr
+      remote: cormoran
+      revision: v4.1.0+zmk-fixes+nrf-half-duplex-uart
+      clone-depth: 1
+      import:
+        name-blocklist:
+          - ci-tools
+          - hal_altera
+          - hal_cypress
+          - hal_infineon
+          - hal_microchip
+          - hal_nxp
+          - hal_openisa
+          - hal_silabs
+          - hal_xtensa
+          - hal_st
+          - hal_ti
+          - loramac-node
+          - mcuboot
+          - mcumgr
+          - net-tools
+          - openthread
+          - edtt
+          - trusted-firmware-m
+
+    # DYA Studio modules required by roBa
+    - name: zmk-driver-pmw3610-with-custom-studio-rpc
       remote: cormoran
       revision: main
-
-    # DYA Studio モジュール（すべて cormoran リポジトリ）
     - name: zmk-module-ble-management
-      remote: cormoran
-      revision: main
-    - name: zmk-module-battery-history
       remote: cormoran
       revision: main
     - name: zmk-module-settings-rpc
@@ -27,5 +51,18 @@ manifest:
     - name: zmk-module-runtime-input-processor
       remote: cormoran
       revision: main
+    - name: zmk-feature-custom-settings
+      remote: cormoran
+      revision: main
+    - name: zmk-feature-runtime-combo
+      remote: cormoran
+      revision: main
+    - name: zmk-feature-runtime-macro
+      remote: cormoran
+      revision: main
+    - name: zmk-feature-module-physical-layout
+      remote: cormoran
+      revision: main
+
   self:
     path: config
